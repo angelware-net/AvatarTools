@@ -1,0 +1,19 @@
+{
+  "name": "com.angelware.at",
+  "displayName": "AW_AT",
+  "version": "0.0.1",
+  "description": "Describe this Package",
+  "gitDependencies": {},
+  "vpmDependencies": {
+    "com.vrchat.avatars": "3.7.4"
+  },
+  "author": {
+    "name": "ANGELWARE",
+    "email": "ARCHANGEL@ANGELWARE.NET",
+    "url": "ANGELWARE.NET"
+  },
+  "legacyFolders": {},
+  "legacyFiles": {},
+  "localPath": "P:\\ARCHANGEL\\Packages\\com.angelware.at",
+  "unity": "2022.3"
+}
