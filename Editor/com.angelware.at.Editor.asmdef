@@ -1,18 +1,21 @@
 {
-  "name": "com.angelware.at.Editor",
-  "references": [
-    "VRC.SDK3A",
-    "VRC.SDK3A.Editor",
-    "VRC.SDKBase",
-    "VRC.SDKBase.Editor",
-    "com.angelware.at"
-  ],
-  "includePlatforms": [],
-  "excludePlatforms": [],
-  "allowUnsafeCode": false,
-  "autoReferenced": true,
-  "overrideReferences": false,
-  "precompiledReferences": [],
-  "defineConstraints": [],
-  "optionalUnityReferences": []
+    "name": "com.angelware.at.Editor",
+    "rootNamespace": "",
+    "references": [
+        "VRC.SDK3A",
+        "VRC.SDK3A.Editor",
+        "VRC.SDKBase",
+        "VRC.SDKBase.Editor",
+        "com.angelware.at",
+        "ThryAssemblyDefinition"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
