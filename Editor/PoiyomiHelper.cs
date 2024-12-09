@@ -127,7 +127,7 @@ namespace ANGELWARE.AvatarTools
                 }
 
                 // Prepare parameters
-                object[] parameters = { materials, lockState, showDialog, showProgressBar, allowCancel, null };
+                object[] parameters = { materials, lockState, showProgressBar, showDialog, allowCancel, null };
 
                 // Invoke the method
                 var result = method.Invoke(null, parameters);
