@@ -5,6 +5,7 @@ using AnimatorAsCode.V1;
 using AnimatorAsCode.V1.ModularAvatar;
 using nadena.dev.ndmf;
 using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Rendering;
 using VRC.SDK3.Avatars.Components;
@@ -19,7 +20,7 @@ namespace ANGELWARE.AvatarTools
     [DisallowMultipleComponent]
     public class PoiSSAOSetup : MonoBehaviour, IEditorOnly
     {
-        [SerializeField] public List<Material> avatarPoiyomiMaterials;
+        [SerializeField] public List<Material> avatarPoiyomiMaterials = new List<Material>();
         [SerializeField] public bool enableIntensity = true;
         [SerializeField] public bool createMenuEntry = true;
     }
@@ -193,7 +194,6 @@ namespace ANGELWARE.AvatarTools
             
             // Merge animator
             maAc.NewMergeAnimator(ctrl, VRCAvatarDescriptor.AnimLayerType.FX);
-
         }
 
         /// <summary>
@@ -238,6 +238,7 @@ namespace ANGELWARE.AvatarTools
             {
                 depthLight = depthLights[0].gameObject;
                 Debug.Log("AT SSAO: Depth Light found!");
+                depthLight.SetActive(false);
                 return depthLight;
             }
 
@@ -248,7 +249,7 @@ namespace ANGELWARE.AvatarTools
             var light = depthLight.AddComponent<Light>();
             light.lightmapBakeType = LightmapBakeType.Realtime;
             light.type = LightType.Directional;
-            light.intensity = 0.001f;
+            light.intensity = 0.01f;
             light.color = Color.black;
             light.shadows = LightShadows.Hard;
             light.shadowStrength = 1f;
@@ -259,7 +260,11 @@ namespace ANGELWARE.AvatarTools
             light.cookieSize = 10.0f;
             light.renderMode = LightRenderMode.Auto;
             
+            // Culling Mask SetupS
+            light.cullingMask = LayerMask.GetMask("StereoLeft");
+            
             depthLight.transform.SetParent(ctx.AvatarRootTransform);
+            depthLight.SetActive(false);
 
             return depthLight;
         }

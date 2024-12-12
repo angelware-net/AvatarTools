@@ -12,19 +12,22 @@ namespace ANGELWARE.AvatarTools
     public class PoiSSAOEditor : BaseInspector
     {
         private SerializedProperty _avatarMaterials;
+        private SerializedProperty _intensityToggle;
 
         private void OnEnable()
         {
             _avatarMaterials = serializedObject.FindProperty("avatarPoiyomiMaterials");
+            _intensityToggle = serializedObject.FindProperty("enableIntensity");
         }
 
         protected override void SetupContent(VisualElement root)
         {
             serializedObject.Update();
+            
 
             // Find root container and set color based on dark / light mode
             var container = root.Q<VisualElement>("Container");
-
+            
             if (EditorGUIUtility.isProSkin)
                 container.style.backgroundColor = new Color(0.21f, 0.21f, 0.21f);
             else
@@ -63,6 +66,8 @@ namespace ANGELWARE.AvatarTools
             
             infoContainer.Add(info);
             container.Add(infoContainer);
+            
+            container.Add(new PropertyField(_intensityToggle));
 
             // Add material list
             container.Add(new PropertyField(_avatarMaterials));
@@ -114,10 +119,10 @@ namespace ANGELWARE.AvatarTools
             EditorUtility.SetDirty(targetComponent);
             serializedObject.ApplyModifiedProperties();
 
-            if (targetComponent.avatarPoiyomiMaterials.Count >= 0)
-                EditorUtility.DisplayDialog("AvatarTools",
-                    "No Poiyomi Pro 9.2+ materials could be found! Please make sure you are using the latest version of Poiyomi Pro! Poiyomi Toon (free version) does not support SSAO!",
-                    "Okay");
+            // if (targetComponent.avatarPoiyomiMaterials.Count >= 0)
+            //     EditorUtility.DisplayDialog("AvatarTools",
+            //         "No Poiyomi Pro 9.2+ materials could be found! Please make sure you are using the latest version of Poiyomi Pro! Poiyomi Toon (free version) does not support SSAO!",
+            //         "Okay");
 
             Debug.Log($"Populated {_avatarMaterials.arraySize} materials.");
         }
@@ -177,7 +182,7 @@ namespace ANGELWARE.AvatarTools
             var light = depthObject.AddComponent<Light>();
             light.lightmapBakeType = LightmapBakeType.Realtime;
             light.type = LightType.Directional;
-            light.intensity = 0.001f;
+            light.intensity = 0.01f;
             light.color = Color.black;
             light.shadows = LightShadows.Hard;
             light.shadowStrength = 1f;
@@ -187,6 +192,10 @@ namespace ANGELWARE.AvatarTools
             light.shadowNearPlane = 0.2f;
             light.cookieSize = 10.0f;
             light.renderMode = LightRenderMode.Auto;
+            
+            // Culling Mask Setup
+            var layerMask = LayerMask.NameToLayer("StereoLeft");
+            light.cullingMask = layerMask;
             
             depthObject.transform.SetParent(root);
         }
