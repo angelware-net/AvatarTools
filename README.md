@@ -15,3 +15,4 @@ Tools for VRChat avatars by ANGELWARE.
 #### Planned
 - Poiyomi Brightness / Grayscale Setup
   - Quick setup tool for creating Brightness / Grayscale sliders for all materials on the avatar, automatically enables the effect on all materials, creates the animations, and menus.
+
