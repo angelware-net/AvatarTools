@@ -162,6 +162,8 @@ namespace ANGELWARE.AvatarTools
 
                 mat.SetFloat("_SSAOEnabled", 1.0f);
                 mat.SetFloat("_SSAOAnimationToggle", 1.0f);
+                mat.SetOverrideTag("_SSAOAnimationToggleAnimated","1");
+                mat.SetOverrideTag("_SSAOIntensityAnimated", "1");
             }
             
             // TODO: Enable animation on properties
