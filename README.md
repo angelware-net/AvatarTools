@@ -11,5 +11,7 @@ Tools for VRChat avatars by ANGELWARE.
 #### Material Tools
 - Poiyomi SSAO Setup
   - Quick setup tool for Poiyomi SSAO, enables the effect on all materials, adds depth light prefab, and creates toggles for everything.
+
+#### Planned
 - Poiyomi Brightness / Grayscale Setup
   - Quick setup tool for creating Brightness / Grayscale sliders for all materials on the avatar, automatically enables the effect on all materials, creates the animations, and menus.
