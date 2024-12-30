@@ -85,6 +85,13 @@ namespace ANGELWARE.AvatarTools
                 text = "Setup Materials"
             };
             container.Add(setupButton);
+            
+            // Unlock and Setup Material for SSAO
+            var unsetupButton = new Button(UnlockAndDisableSSAO)
+            {
+                text = "Disable SSAO on Materials"
+            };
+            container.Add(unsetupButton);
         }
 
         /// <summary>
@@ -166,8 +173,6 @@ namespace ANGELWARE.AvatarTools
                 mat.SetOverrideTag("_SSAOIntensityAnimated", "1");
             }
             
-            // TODO: Enable animation on properties
-            
             // Finally, we need to add a depth light to the avatar so the user can actually see what's going on
             // Get the VRC_AvatarDescriptor's root transform
             var root = targetComponent.GetComponentInParent<VRC_AvatarDescriptor>()?.transform;
@@ -200,6 +205,44 @@ namespace ANGELWARE.AvatarTools
             light.cullingMask = layerMask;
             
             depthObject.transform.SetParent(root);
+        }
+
+        /// <summary>
+        /// Disables Poi SSAO on all materials
+        /// </summary>
+        private void UnlockAndDisableSSAO()
+        {
+            // If materials list is empty, we should return because we have no materials to operate on.
+            if (_avatarMaterials.arraySize <= 0)
+            {
+                EditorUtility.DisplayDialog("AvatarTools",
+                    "No Poiyomi Pro 9.2+ materials could be found! Please make sure you are using the latest version of Poiyomi Pro! Poiyomi Toon (free version) does not support SSAO!",
+                    "Okay");
+                return;
+            }
+            
+            // Give the user a warning that we are unlocking all of their materials, some users may want to do this manually.
+            var diag = EditorUtility.DisplayDialog("AvatarTools",
+                "Warning: This will unlock all Poiyomi Pro 9.2+ materials and disable SSAO!", "Okay", "Cancel");
+            if (!diag) return;
+
+            Debug.Log("Unlocking materials and enabling SSAO");
+
+            var targetComponent = (PoiSSAOSetup)target;
+            var materials = targetComponent.avatarPoiyomiMaterials;
+
+            // Use the reflected method to unlock all selected materials
+            PoiyomiHelper.LockUnlockMaterials(materials, 0, false, true, false);
+            
+            // For each of the materials we need to enable SSAO and the animated property. This will not be default in-game,
+            // but can be used to show the user what it will look like in-editor. 
+            for (var i = 0; i < targetComponent.avatarPoiyomiMaterials.Count; i++)
+            {
+                var mat = targetComponent.avatarPoiyomiMaterials[i];
+
+                mat.SetFloat("_SSAOEnabled", 1.0f);
+                mat.SetFloat("_SSAOAnimationToggle", 1.0f);
+            }
         }
     }
 }

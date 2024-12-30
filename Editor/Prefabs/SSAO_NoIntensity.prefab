@@ -45,26 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd5c428802534fa3b1b71aa26c08f32f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  avatarPoiyomiMaterials:
-  - {fileID: 2100000, guid: b247a19cde63a424e873466bf0a5c988, type: 2}
-  - {fileID: 2100000, guid: f2137f384d02c694cb05ee117073cd0a, type: 2}
-  - {fileID: 2100000, guid: 8fb34a2e295a60540af0fee2526370f1, type: 2}
-  - {fileID: 2100000, guid: ba038f27d8e535a418c0797fcf86ee8d, type: 2}
-  - {fileID: 2100000, guid: 1a1621ab02426a842bd7366d57d6ba91, type: 2}
-  - {fileID: 2100000, guid: f31e25a536bbd694ea3c7d903cfefcfb, type: 2}
-  - {fileID: 2100000, guid: d103de4baded7eb44979f0113e0ab8d2, type: 2}
-  - {fileID: 2100000, guid: 0a6d8a151efeb484db6a69af91606c1b, type: 2}
-  - {fileID: 2100000, guid: 470bf72eff14fc448a87ec5f8778e26e, type: 2}
-  - {fileID: 2100000, guid: 999410a46e7651047817d0fe55066a3a, type: 2}
-  - {fileID: 2100000, guid: f209f8e84a63e8f40830545bf91187e8, type: 2}
-  - {fileID: 2100000, guid: f209f8e84a63e8f40830545bf91187e8, type: 2}
-  - {fileID: 2100000, guid: f2137f384d02c694cb05ee117073cd0a, type: 2}
-  - {fileID: 2100000, guid: 4d04531e584798043bed62eea0f9d124, type: 2}
-  - {fileID: 2100000, guid: 24c40bfde5976ef4eb919210c132d0a0, type: 2}
-  - {fileID: 2100000, guid: 44b118806e0cbeb46881fe23363ab3c5, type: 2}
-  - {fileID: 2100000, guid: 93e7eeb99eec3024cb668d6268b3ff19, type: 2}
-  - {fileID: 2100000, guid: 2ca8907c95715d64c911e6863d275f11, type: 2}
-  - {fileID: 2100000, guid: 948a0232120d9aa4e89831b8ba18ba7b, type: 2}
+  avatarPoiyomiMaterials: []
   enableIntensity: 0
   createMenuEntry: 1
 --- !u!114 &8924015070921860762
